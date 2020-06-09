@@ -1,0 +1,169 @@
+
+  <!DOCTYPE html>
+  <html lang="en">
+  
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>六角西餐廳</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+   
+    
+    
+  </head>
+  
+  <body>
+  
+
+<!-- JavaScript -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js"></script>
+
+<script>
+//   $(document).ready(function () {
+//     $('[data-toggle="tooltip"]').tooltip();
+
+//     // 編輯的 Modal 事件
+//     $('#editModal').on('show.bs.modal', function (event) {
+//       var button = $(event.relatedTarget) // 選則當初觸發事件的按鈕
+//       var title = button.data('title') // 使用 data-* 來取得特定內容
+
+//       var modal = $(this)
+//       modal.find('.modal-title').text(title) // 寫入資料
+//     });
+
+//     $('#removeModal').on('show.bs.modal', function (event) {
+//       var button = $(event.relatedTarget) // 選則當初觸發事件的按鈕
+//       var title = button.data('title') // 使用 data-* 來取得特定內容
+
+//       var modal = $(this)
+//       modal.find('.modal-title').text('確認' + title) // 寫入資料
+//     })
+//   });
+</script>
+<script>
+  window.chartColors = {
+    red: 'rgb(255, 99, 132)',
+    orange: 'rgb(255, 159, 64)',
+    yellow: 'rgb(255, 205, 86)',
+    green: 'rgb(75, 192, 192)',
+    blue: 'rgb(54, 162, 235)',
+    purple: 'rgb(153, 102, 255)',
+    grey: 'rgb(201, 203, 207)'
+  };
+
+  var randomScalingFactor = function () {
+    return Math.round(Math.random() * 100);
+  };
+
+  var config = {
+    type: 'pie',
+    data: {
+      datasets: [{
+        data: [
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+        ],
+        backgroundColor: [
+          window.chartColors.red,
+          window.chartColors.orange,
+          window.chartColors.yellow,
+          window.chartColors.green,
+          window.chartColors.blue,
+        ],
+        label: 'Dataset 1'
+      }],
+      labels: [
+        "Red",
+        "Orange",
+        "Yellow",
+        "Green",
+        "Blue"
+      ]
+    },
+    options: {
+      responsive: true
+    }
+  };
+
+
+  // bar
+  var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  var colors = Chart.helpers.color;
+  var barChartData = {
+    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    datasets: [{
+      label: 'Dataset 1',
+      backgroundColor: colors(window.chartColors.red).alpha(0.5).rgbString(),
+      borderColor: window.chartColors.red,
+      borderWidth: 1,
+      data: [
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor()
+      ]
+    }, {
+      label: 'Dataset 2',
+      backgroundColor: colors(window.chartColors.blue).alpha(0.5).rgbString(),
+      borderColor: window.chartColors.blue,
+      borderWidth: 1,
+      data: [
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor(),
+        randomScalingFactor()
+      ]
+    }]
+
+  };
+
+  window.onload = function () {
+    // pie
+    document.querySelectorAll('.chart-item').forEach(function (item) {
+      config.data.datasets.forEach(function (dataset) {
+        dataset.data = dataset.data.map(function () {
+          return randomScalingFactor();
+        });
+      });
+      var ctx = item.getContext("2d");
+      window.myPie = new Chart(ctx, config);
+    })
+
+
+    // bar
+    var barCtx = document.getElementById("barCanvas").getContext("2d");
+    window.myBar = new Chart(barCtx, {
+      type: 'bar',
+      data: barChartData,
+      options: {
+        responsive: true,
+        legend: {
+          position: 'top',
+        },
+        title: {
+          display: true,
+          text: 'Chart.js Bar Chart'
+        }
+      }
+    });
+
+  };
+</script>
+  </body>
+  
+  </html>
+  
