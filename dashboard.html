@@ -244,12 +244,19 @@
 </div>
 
 <section>
-  <div class="box mt-3" style="background-color: yellow; width: 100; height: 200px;">
-
-  </div>
-
-</section>
+  
+  <div class="input-group ml-3 mt-3">
+    <input type="text" class="form-control-sm" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2"
+    data-toggle="tooltip" data-placement="top" data-html="true" title=" <em>按下ENTER 快速搜尋 </em>">
+    
  
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+    </div>
+  </div>
+  
+</section>
+
 
   <!-- JavaScript -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -264,26 +271,27 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js"></script>
 
   <script>
-    //   $(document).ready(function () {
-    //     $('[data-toggle="tooltip"]').tooltip();
+      $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
 
-    //     // 編輯的 Modal 事件
-    //     $('#editModal').on('show.bs.modal', function (event) {
-    //       var button = $(event.relatedTarget) // 選則當初觸發事件的按鈕
-    //       var title = button.data('title') // 使用 data-* 來取得特定內容
+        // 編輯的 Modal 事件
+        $('#editModal').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget) // 選則當初觸發事件的按鈕
+          var title = button.data('title') // 使用 data-* 來取得特定內容
 
-    //       var modal = $(this)
-    //       modal.find('.modal-title').text(title) // 寫入資料
-    //     });
+          var modal = $(this)
+          modal.find('.modal-title').text(title) // 寫入資料
+        });
 
-    //     $('#removeModal').on('show.bs.modal', function (event) {
-    //       var button = $(event.relatedTarget) // 選則當初觸發事件的按鈕
-    //       var title = button.data('title') // 使用 data-* 來取得特定內容
+        $('#removeModal').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget) // 選則當初觸發事件的按鈕
+          var title = button.data('title') // 使用 data-* 來取得特定內容
 
-    //       var modal = $(this)
-    //       modal.find('.modal-title').text('確認' + title) // 寫入資料
-    //     })
-    //   });
+          var modal = $(this)
+          modal.find('.modal-title').text('確認' + title) // 寫入資料
+        })
+      });
+
   </script>
   <script>
     window.chartColors = {
